@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem Vindo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('nav.ejs') %>
+        <div class="container mt-5">
+            <h1 class="text-center">Bem-vindo à UFPA - Bet</h1>
+            <p class="text-center">Aposte com segurança e ganhe prêmios incríveis!</p>
+
+            <div class="row mt-4">
+                <!-- Card 1: Variedade de Apostas -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://diariodocomercio.com.br/wp-content/uploads/2023/09/apostas-esportivas-online-brasil.jpg"
+                            class="card-img-top" alt="Variedade de Apostas">
+                        <div class="card-body">
+                            <h5 class="card-title">Variedade de Apostas</h5>
+                            <p class="card-text">Oferecemos uma ampla gama de opções de apostas, incluindo esportes,
+                                cassino e muito mais.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Segurança e Confiabilidade -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://doutorecommerce.com.br/wp-content/uploads/2023/06/seguranca-nas-vendas-online1-1.jpg"
+                            class="card-img-top" alt="Segurança">
+                        <div class="card-body">
+                            <h5 class="card-title">Segurança e Confiabilidade</h5>
+                            <p class="card-text">Nosso site é seguro e confiável, garantindo a proteção dos seus dados e
+                                transações.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Suporte ao Cliente -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://blog.etus.com.br/wp-content/uploads/2022/01/A-importancia-do-Atendimento-de-Suporte-ao-Cliente-Blog-Etus-800x400.jpg"
+                            class="card-img-top" alt="Suporte ao Cliente">
+                        <div class="card-body">
+                            <h5 class="card-title">Suporte ao Cliente 24/7</h5>
+                            <p class="card-text">Nossa equipe de suporte está disponível 24 horas por dia, 7 dias por
+                                semana, para ajudar você em qualquer questão.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <!-- Card 4: Promoções -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://triibo.com.br/wp-content/uploads/2020/07/promo%C3%A7%C3%B5es-1.png"
+                            class="card-img-top" alt="Promoções">
+                        <div class="card-body">
+                            <h5 class="card-title">Promoções Imperdíveis</h5>
+                            <p class="card-text">Aproveite nossas promoções e bônus especiais para aumentar suas chances
+                                de ganhar!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Apostas ao Vivo -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://i0.wp.com/jornalgrandebahia.com.br/wp-content/uploads/2021/12/Betfair-explica-como-fazer-apostas-ao-vivo-20211228.jpg?fit=1200%2C800&ssl=1"
+                            class="card-img-top" alt="Apostas ao Vivo">
+                        <div class="card-body">
+                            <h5 class="card-title">Apostas ao Vivo</h5>
+                            <p class="card-text">Experimente a emoção das apostas ao vivo enquanto os jogos estão
+                                acontecendo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Responsabilidade -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://bnldata.com.br/wp-content/uploads/2021/02/Jogo_Responsavel_Caixa.jpg"
+                            class="card-img-top" alt="Jogo Responsável">
+                        <div class="card-body">
+                            <h5 class="card-title">Jogo Responsável</h5>
+                            <p class="card-text">Promovemos o jogo responsável e oferecemos suporte a jogadores que
+                                possam precisar de ajuda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    const ID = localStorage.getItem('id')
+
+    if (ID == null) {
+        alert('Você precisa fazer login')
+        window.location.href = '/'
+    }
+    document.getElementById('cliente-nome').innerHTML = localStorage.getItem('nome')
+    function atualizarSaldo() {
+
+        fetch('/saldo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: localStorage.getItem('id') })
+        })
+        .then(res => res.json())
+        .then(data => document.getElementById('balance').innerHTML = data.saldo)
+    }
+    atualizarSaldo()
+</script>
+
+</html>

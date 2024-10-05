@@ -1,0 +1,17 @@
+-- Inserindo dados na tabela usuario
+INSERT INTO usuario (nome, sobrenome, cpf, email, senha, saldo) VALUES
+('João', 'Silva', '123.456.789-00', 'joao.silva@email.com', 'senha123', 100.00),
+('Maria', 'Oliveira', '987.654.321-00', 'maria.oliveira@email.com', 'senha456', 200.50),
+('Pedro', 'Santos', '456.123.789-00', 'pedro.santos@email.com', 'senha789', 150.75);
+
+-- Inserindo dados na tabela jogos
+INSERT INTO jogos (titulo, odd) VALUES
+('Jogo A', 1.75),
+('Jogo B', 2.50),
+('Jogo C', 3.00);
+
+-- Inserindo dados na tabela apostas
+INSERT INTO apostas (idusuario, idjogo, valor, odd) VALUES
+(1, 1, 50.00, 1.75),
+(2, 2, 100.00, 2.50),
+(3, 3, 25.00, 3.00);

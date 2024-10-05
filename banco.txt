@@ -1,0 +1,25 @@
+CREATE TABLE usuario (
+    id INTEGER PRIMARY KEY,  -- Auto-increment implícito em SQLite
+    nome TEXT NOT NULL,
+    sobrenome TEXT NOT NULL,
+    cpf TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    senha TEXT NOT NULL,
+    saldo DECIMAL(10, 2) DEFAULT 0.00
+);
+
+CREATE TABLE jogos (
+    id INTEGER PRIMARY KEY,  -- Auto-increment implícito em SQLite
+    titulo TEXT NOT NULL,
+    odd DECIMAL(5, 2) NOT NULL
+);
+
+CREATE TABLE apostas (
+    id INTEGER PRIMARY KEY,  -- Auto-increment implícito em SQLite
+    idusuario INTEGER,
+    idjogo INTEGER,
+    valor DECIMAL(10, 2) NOT NULL,
+    odd DECIMAL(5, 2) NOT NULL,
+    FOREIGN KEY (idusuario) REFERENCES usuario(id),
+    FOREIGN KEY (idjogo) REFERENCES jogos(id)
+);
